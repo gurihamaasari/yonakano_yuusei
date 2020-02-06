@@ -1,19 +1,17 @@
 ﻿//武器設定
 var Weapon_list = {
     "data": [
-        { "id": 0, "weapon_zen": "突撃", "weapon_kou" :"銃弾"},
-        { "id": 1, "weapon_zen": "打撃", "weapon_kou":"弓矢"},
-        { "id": 2, "weapon_zen": "斬撃", "weapon_kou":"銃弾"},
-        { "id": 3, "weapon_zen": "突撃", "weapon_kou":"弓矢"},
-        { "id": 4, "weapon_zen": "打撃", "weapon_kou":"魔法"},
-        { "id": 5, "weapon_zen": "斬撃", "weapon_kou":"弓矢"},
-        { "id": 6, "weapon_zen": "突撃", "weapon_kou":"魔法"},
-        { "id": 7, "weapon_zen": "打撃", "weapon_kou":"銃弾"},
-        { "id": 8, "weapon_zen": "斬撃", "weapon_kou":"魔法"}
+        { "id": 0, "weapon_zen" : "突撃", "weapon_kou" :"銃弾"},
+        { "id": 1, "weapon_zen" : "打撃", "weapon_kou" :"弓矢"},
+        { "id": 2, "weapon_zen" : "斬撃", "weapon_kou" :"銃弾"},
+        { "id": 3, "weapon_zen" : "突撃", "weapon_kou" :"弓矢"},
+        { "id": 4, "weapon_zen" : "打撃", "weapon_kou" :"魔法"},
+        { "id": 5, "weapon_zen" : "斬撃", "weapon_kou" :"弓矢"},
+        { "id": 6, "weapon_zen" : "突撃", "weapon_kou" :"魔法"},
+        { "id": 7, "weapon_zen" : "打撃", "weapon_kou" :"銃弾"},
+        { "id": 8, "weapon_zen" : "斬撃", "weapon_kou" :"魔法"}
     ]
 };
-
-
 
 $(function () {
 
@@ -33,7 +31,7 @@ $(function () {
     $("#txt_date").flatpickr(optional_config);
 
     $("#txt_stop_date").flatpickr(optional_config_stop);
-
+    $("#txt_show_date").flatpickr(optional_config_stop);
     $("#calc_days").val(30);
 
     //select-box設定
@@ -57,37 +55,54 @@ $(function () {
 
         var str_day = $("#txt_date").val();
         var calc_days = $("#calc_days").val();        
+        //stop_day
         var txt_stop_days = $("#txt_stop_date").val();
         var lst_stop_days = txt_stop_days.split(',');
+        //show_day
+        var txt_show_days = $("#txt_show_date").val();
+        var lst_show_days = txt_show_days.split(',');
+        
         var str_rezalt = '';
         str_rezalt += '<table id = "table05">';
-
         str_rezalt += '<thead>';
         str_rezalt += '<tr>';
         str_rezalt += '<th>日付</th><th>特攻武器</th><th colspan="2">アイコン</th>';
         str_rezalt += '</tr>';
         str_rezalt += '</thead>';
         str_rezalt += '<tbody>';
-        for (var i = 0; i < calc_days; i++) {
 
-            str_rezalt += '<tr>';
-            str_rezalt += '<th>';
+        for (var i = 0; i < calc_days; i++) {
+            //start
 
             var m = moment(str_day);
             var m_day = m.add("days", i); //1日追加
-            
-            var data = Weapon_list.data.filter(function (item, index) {
-                if (item.id === weapon_id) return true;
-            });
+            var is_show = true; //表示しますか？ はい
+            var str_row = '';   //行のデータ作成
 
-            str_rezalt += m_day.format('YYYY年MM月DD日');
-            str_rezalt += '</th>';
-            str_rezalt += '<td>';
+            //show配列内検索
+            var rez_show = lst_show_days.some(function (value) {
+                var day = moment(value);
+                return day.format('YYYYMMDD') === m_day.format('YYYYMMDD');
+            });
 
             //休日配列内検索
             var result = lst_stop_days.some(function (value) {
                 var day = moment(value);
                 return day.format('YYYYMMDD') === m_day.format('YYYYMMDD');
+            });
+
+
+            //if 文
+
+            str_row += '<tr>';//row start
+            str_row += '<th>';
+            str_row += m_day.format('YYYY年MM月DD日');
+            str_row += '</th>';
+            str_row += '<td>';
+
+
+            var data = Weapon_list.data.filter(function (item, index) {
+                if (item.id === weapon_id) return true;
             });
 
             var img_zen = data[0].weapon_zen;
@@ -106,6 +121,7 @@ $(function () {
                     break;
             }
 
+            //後衛職
             switch (img_kou) {
                 case '弓矢':
                     img_kou = '<img src="img/yumi.png" width="32" height="32"/>';
@@ -118,38 +134,40 @@ $(function () {
                     break;
             }
 
-
+            //お休みはアイコンなし　武器Idのサイクルを停止
             if (result) {
-                str_rezalt += 'お休み';
+                str_row += 'お休み';
                 img_zen = '';
                 img_kou = ''; 
             } else {
                 weapon_id = weapon_id + 1;
-                str_rezalt += '' + data[0].weapon_zen + '&' + data[0].weapon_kou;
+                str_row += '' + data[0].weapon_zen + '&' + data[0].weapon_kou;
             }
 
-            str_rezalt += '<td>';
-            str_rezalt += img_zen;
-            str_rezalt += '</td>';
-            str_rezalt += '<td>';
-            str_rezalt += img_kou;
-            str_rezalt += '</td>';
+            str_row += '<td>';
+            str_row += img_zen;
+            str_row += '</td>';
+            str_row += '<td>';
+            str_row += img_kou;
+            str_row += '</td>';
+            str_row += '</tr>';//row end
 
-
+            //IDが9になったら0にする
             if (weapon_id === 9) {
                 weapon_id = 0;
             }
 
-            str_rezalt += '</td>';
-            str_rezalt += '</tr>';
-           
+            if (lst_show_days[0] === "") {
+                str_rezalt += str_row;
+            } else {
+                if (rez_show) {
+                    str_rezalt += str_row;
+                }
+            }
+
         }//for
         str_rezalt += '</tbody>';
         str_rezalt += '</table>';
         $('#rezalt').html(str_rezalt);
-        
-
-    });   
-
-
+    });
 });
