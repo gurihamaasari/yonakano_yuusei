@@ -17,19 +17,20 @@ $(function () {
 
     //var WeekChars = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
     //var dObj = new Date();    // 今日の日付
+    var today = moment();
 
     var optional_config = {
         dateFormat: "Y/m/d",
-        defaultDate: ["today"],
+        //defaultDate: ["today"],
         locale: {
-            firstDayOfWeek: 0 // 日曜日を週の始めに設定
+            firstDayOfWeek: 0 // 月曜日を週の始めに設定
         }
     };
     var optional_config_stop = {
         dateFormat: "Y/m/d",
         mode: "multiple",
         locale: {
-            firstDayOfWeek: 0 // 日曜日を週の始めに設定
+            firstDayOfWeek: 0 // 月曜日を週の始めに設定
         }
     };
     //カレンダー日本語化
@@ -39,6 +40,7 @@ $(function () {
     $("#txt_stop_date").flatpickr(optional_config_stop);
     $("#txt_show_date").flatpickr(optional_config_stop);
     $("#calc_days").val(30);
+    $("#txt_date").val(today.format('YYYY/MM/DD'));
 
     //select-box設定
     //$.each(Weapon_list.data, function (index, value) {
