@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Weapon_cycle", ".", "{BEE5325D-8BCB-4353-A782-371FE3652BF0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_63832"
+		Debug.AspNetCompiler.PhysicalPath = "..\Weapon_cycle\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63832\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_63832"
+		Release.AspNetCompiler.PhysicalPath = "..\Weapon_cycle\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63832\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "63832"
+		SlnRelativePath = "..\Weapon_cycle\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEE5325D-8BCB-4353-A782-371FE3652BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE5325D-8BCB-4353-A782-371FE3652BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4BA4A77-773A-4E77-A18A-407C3D5C6998}
+	EndGlobalSection
+EndGlobal
