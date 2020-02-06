@@ -20,11 +20,17 @@ $(function () {
 
     var optional_config = {
         dateFormat: "Y/m/d",
-        defaultDate: ["today"]
+        defaultDate: ["today"],
+        locale: {
+            firstDayOfWeek: 0 // 月曜日を週の始めに設定
+        }
     };
     var optional_config_stop = {
         dateFormat: "Y/m/d",
-        mode: "multiple"
+        mode: "multiple",
+        locale: {
+            firstDayOfWeek: 0 // 月曜日を週の始めに設定
+        }
     };
     //カレンダー日本語化
     flatpickr.localize(flatpickr.l10ns.ja);
