@@ -15,11 +15,11 @@ var Weapon_list = {
 
 $(function () {
 
-    var today = moment();　//今日を取得
+
 
     var optional_config = {
         dateFormat: "Y/m/d",
-        //defaultDate: ["today"],
+        defaultDate: ["today"],
         locale: {
             firstDayOfWeek: 0 // 日曜日を週の始めに設定
         }
@@ -38,13 +38,10 @@ $(function () {
     $("#txt_stop_date").flatpickr(optional_config_stop);
     $("#txt_show_date").flatpickr(optional_config_stop);
     $("#calc_days").val(30);
-    //$("#txt_date").val(today.format('YYYY/MM/DD'));
-    $("#txt_date").val(getNowYMD);
 
-    //select-box設定
-    //$.each(Weapon_list.data, function (index, value) {
-    //    $("#list_wapon").append($("<option>").val(value.id).text(value.weapon));
-    //})
+    //var today = moment();　//今日を取得
+    //$("#txt_date").val(today.format('YYYY/MM/DD'));
+    //$("#txt_date").val(getNowYMD);
 
     //ボタンを押したとき
     $('#btn_run').click(function (e) {
@@ -181,12 +178,12 @@ $(function () {
     });
 });
 
-//iOS対策
-function getNowYMD() {
-    var dt = new Date();
-    var y = dt.getFullYear();
-    var m = ("00" + (dt.getMonth() + 1)).slice(-2);
-    var d = ("00" + dt.getDate()).slice(-2);
-    var result = y + "/" + m + "/" + d;
-    return result;
-}
+//iOS対策 無駄に終わった
+//function getNowYMD() {
+//    var dt = new Date();
+//    var y = dt.getFullYear();
+//    var m = ("00" + (dt.getMonth() + 1)).slice(-2);
+//    var d = ("00" + dt.getDate()).slice(-2);
+//    var result = y + "/" + m + "/" + d;
+//    return result;
+//}
