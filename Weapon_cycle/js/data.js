@@ -38,7 +38,8 @@ $(function () {
     $("#txt_stop_date").flatpickr(optional_config_stop);
     $("#txt_show_date").flatpickr(optional_config_stop);
     $("#calc_days").val(30);
-    $("#txt_date").val(today.format('YYYY/MM/DD'));
+    //$("#txt_date").val(today.format('YYYY/MM/DD'));
+    $("#txt_date").val(getNowYMD);
 
     //select-box設定
     //$.each(Weapon_list.data, function (index, value) {
@@ -179,3 +180,13 @@ $(function () {
         $('#rezalt').html(str_rezalt);
     });
 });
+
+//iOS対策
+function getNowYMD() {
+    var dt = new Date();
+    var y = dt.getFullYear();
+    var m = ("00" + (dt.getMonth() + 1)).slice(-2);
+    var d = ("00" + dt.getDate()).slice(-2);
+    var result = y + "/" + m + "/" + d;
+    return result;
+}
