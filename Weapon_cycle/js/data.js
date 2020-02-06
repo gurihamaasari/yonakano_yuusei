@@ -15,22 +15,20 @@ var Weapon_list = {
 
 $(function () {
 
-    //var WeekChars = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
-    //var dObj = new Date();    // 今日の日付
-    var today = moment();
+    var today = moment();　//今日を取得
 
     var optional_config = {
         dateFormat: "Y/m/d",
         //defaultDate: ["today"],
         locale: {
-            firstDayOfWeek: 0 // 月曜日を週の始めに設定
+            firstDayOfWeek: 0 // 日曜日を週の始めに設定
         }
     };
     var optional_config_stop = {
         dateFormat: "Y/m/d",
         mode: "multiple",
         locale: {
-            firstDayOfWeek: 0 // 月曜日を週の始めに設定
+            firstDayOfWeek: 0 // 日曜日を週の始めに設定
         }
     };
     //カレンダー日本語化
@@ -165,9 +163,11 @@ $(function () {
                 weapon_id = 0;
             }
 
+            //表示日付が設定されていないときは全件表示する
             if (lst_show_days[0] === "") {
                 str_rezalt += str_row;
             } else {
+                //表示日付に該当した日のみ表示する
                 if (rez_show) {
                     str_rezalt += str_row;
                 }
