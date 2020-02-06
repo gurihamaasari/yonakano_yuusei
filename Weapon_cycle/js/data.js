@@ -22,14 +22,14 @@ $(function () {
         dateFormat: "Y/m/d",
         defaultDate: ["today"],
         locale: {
-            firstDayOfWeek: 0 // 月曜日を週の始めに設定
+            firstDayOfWeek: 0 // 日曜日を週の始めに設定
         }
     };
     var optional_config_stop = {
         dateFormat: "Y/m/d",
         mode: "multiple",
         locale: {
-            firstDayOfWeek: 0 // 月曜日を週の始めに設定
+            firstDayOfWeek: 0 // 日曜日を週の始めに設定
         }
     };
     //カレンダー日本語化
